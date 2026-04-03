@@ -1,0 +1,7 @@
+ERROR: TimeoutException while locating element 'login-button'
+Stacktrace: Element not found after 10 seconds
+
+ERROR: 401 Unauthorized for API /login
+Reason: Invalid token
+
+ERROR: Connection refused while calling payment service
