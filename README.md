@@ -5,9 +5,46 @@ RAG pipeline for intelligent log analysis
 When a CI pipeline fails, engineers spend 15–30 min manually reading 
 logs to find the root cause. This tool does it in seconds.
 
-## How it works (architecture)
-Log file → chunking → embedding → vector store → LLM → plain English summary
-
+## How it works 
+┌─────────────────────────────────────────────────────────────┐
+│                      INPUT                                  │
+│                  [ Log File (.log) ]                        │
+└───────────────────────────┬─────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    INGESTION PIPELINE                       │
+│                                                             │
+│   ┌─────────────┐        ┌──────────────┐                  │
+│   │   Chunker   │ ──────▶│   Embedder   │                  │
+│   │(split logs  │        │(convert text │                  │
+│   │ into blocks)│        │ to vectors)  │                  │
+│   └─────────────┘        └──────┬───────┘                  │
+│                                 │                           │
+│                                 ▼                           │
+│                       ┌──────────────────┐                 │
+│                       │   Vector Store   │                 │
+│                       │  (FAISS/Chroma)  │                 │
+│                       └──────────────────┘                 │
+└─────────────────────────────────────────────────────────────┘
+                            │
+              User Query ───┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    QUERY PIPELINE                           │
+│                                                             │
+│   ┌─────────────┐        ┌──────────────┐                  │
+│   │  Retriever  │ ──────▶│ LLM (OPENAI) |                  │
+│   │(find top-k  │        │              │                  │
+│   │relevant logs│        │              │                  │
+│   └─────────────┘        └──────┬───────┘                  │
+│                                 │                           │
+└─────────────────────────────────┼───────────────────────────┘
+                                  │
+                                  ▼
+                   [ Plain English Error Summary ]
+                   [ Root Cause + Suggested Fix  ]
 ## Tech stack
 - Python 3.11
 - OpenAI API
