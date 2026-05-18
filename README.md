@@ -6,6 +6,7 @@ When a CI pipeline fails, engineers spend 15–30 min manually reading
 logs to find the root cause. This tool does it in seconds.
 
 ## How it works 
+```
 ┌─────────────────────────────────────────────────────────────┐
 │                      INPUT                                  │
 │                  [ Log File (.log) ]                        │
@@ -24,7 +25,7 @@ logs to find the root cause. This tool does it in seconds.
 │                                 ▼                           │
 │                       ┌──────────────────┐                 │
 │                       │   Vector Store   │                 │
-│                       │  (FAISS/Chroma)  │                 │
+│                       │  (FAISS)         │                 │
 │                       └──────────────────┘                 │
 └─────────────────────────────────────────────────────────────┘
                             │
@@ -45,6 +46,7 @@ logs to find the root cause. This tool does it in seconds.
                                   ▼
                    [ Plain English Error Summary ]
                    [ Root Cause + Suggested Fix  ]
+```
 ## Tech stack
 - Python 3.11
 - OpenAI API
