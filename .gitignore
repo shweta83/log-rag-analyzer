@@ -1,16 +1,26 @@
+.env
+*.env
+
 pycache/
 *.py[cod]
-
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
 venv/
-.env/
-.env.*
+.env
+
+*.bin
+*.pkl
 
 logs/
 *.log
 
-.env
-*.env
-
 build/
 dist/
 *.egg-info/
+
+.DS_Store
+Thumbs.db
