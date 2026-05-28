@@ -2,7 +2,7 @@
 
 A retrieval-augmented generation (RAG) tool that automatically ingests log files, 
 finds the most relevant error patterns, and produces a plain-English root cause 
-analysis using GPT-4o.
+analysis.
 
 Built as a practical AI engineering project by an SDET to reduce manual log 
 triage time after CI/CD pipeline failures.
@@ -35,7 +35,7 @@ logs/                    ← drop your log files here
                                                    ▼
                                          ┌──────────────────┐
                                          │   LLM Client     │
-                                         │   (GPT-4o)       │
+                                         │                  │
                                          │                  │
                                          │ root cause +     │
                                          │ suggested fix    │
@@ -52,7 +52,7 @@ similarity search.
 **Retriever** — given a query, finds the top-K most semantically relevant 
 log chunks — not just keyword matches.
 
-**LLM Client** — sends the retrieved chunks to GPT-4o with a structured prompt 
+**LLM Client** — sends the retrieved chunks to LLM with a structured prompt 
 that returns ROOT CAUSE, DETAILS, and SUGGESTED FIX every time.
 
 ---
@@ -64,7 +64,7 @@ that returns ROOT CAUSE, DETAILS, and SUGGESTED FIX every time.
 | Language        | Python 3.11+                      |
 | Embeddings      | OpenAI `text-embedding-3-small`   |
 | Vector Store    | FAISS (local, no server needed)   |
-| LLM             | OpenAI GPT-4o                     |
+| LLM             | OpenAI                            |
 | Architecture    | RAG (Retrieval-Augmented Generation) |
 
 ---
